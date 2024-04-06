@@ -60,7 +60,18 @@ D:\ws-python\the_lazy_bird> venv\Scripts\activate
 # 의존되는 패키지들 설치하기
 (venv) D:\ws-pollux\the_lazy_bird> pip install -r requirements.txt
 
-# 프로그램 실행하기
-(venv) D:\ws-pollux\the_lazy_bird> streamlit run main\app.py
+# 분명 pip도 업그레이드 하라는 메세지가 나왔지만, 우리 작고 하찮은 새는 못봤을꺼야
+(venv) D:\ws-pollux\the_lazy_bird> python.exe -m pip install --upgrade pip
+
+# streamlit으로 main.py 실행하기
+(venv) D:\ws-pollux\the_lazy_bird> streamlit run main\main.py
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8503            <-- 이 주소를 웹브라우저에 입력해.
+  Network URL: http://192.168.1.xxx:8503      <-- 여기에 너 컴퓨터 IP가 찍혔을꺼야.
+
 ```
+
+
 
