@@ -1,0 +1,9 @@
+[server]
+port = 9999
+# baseUrlPath = "/"
+
+[browser]
+serverAddress = "localhost"
+
+[theme]
+backgroundColor = "#FFFFFF"
