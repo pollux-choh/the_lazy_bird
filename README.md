@@ -68,8 +68,8 @@ D:\ws-python\the_lazy_bird> venv\Scripts\activate
 
   You can now view your Streamlit app in your browser.
 
-  Local URL: http://localhost:8503            <-- 이 주소를 웹브라우저에 입력해.
-  Network URL: http://192.168.1.xxx:8503      <-- 여기에 너 컴퓨터 IP가 찍혔을꺼야.
+  Local URL: http://localhost:9999            <-- 이 주소를 웹브라우저에 입력해.
+  Network URL: http://192.168.1.xxx:9999      <-- 여기에 너 컴퓨터 IP가 찍혔을꺼야.
 
 ```
 
