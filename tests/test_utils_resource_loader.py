@@ -1,7 +1,14 @@
 import pytest
 from unittest.mock import MagicMock
 from pathlib import Path
-from utils.pollux_util import DocLoader  # doc_loader.py 파일에서 DocLoader 클래스를 임포트
+from app.utils.resource_loader import DocLoader  # doc_loader.py 파일에서 DocLoader 클래스를 임포트
+
+"""
+DocLoader test
+
+Author: choh@pollux.ai
+Created: 2024-04-07
+"""
 
 # 목(mock) 함수를 정의하여 실제 파일 시스템 읽기를 시뮬레이션
 def mock_read_text(self, encoding=None):
@@ -18,11 +25,11 @@ def doc_loader():
 def test_doc_loader_initialization(doc_loader):
     # 초기화 검사
     assert doc_loader.content_name == "main"
-    assert doc_loader.doc_root_dir == Path.cwd() / 'app' / 'doc'
+    assert doc_loader.doc_root_dir == Path.cwd() / 'doc'
 
 def test_get_resource_path(doc_loader):
     # 문서 경로 생성 검사
-    expected_path = Path.cwd() / 'app' / 'doc' / 'main' / 'main_notice.md'
+    expected_path = Path.cwd() / 'doc' / 'main' / 'main_notice.md'
     assert doc_loader._DocLoader__get_resource_path('main', 'main_notice.md') == expected_path
 
 def test_get_doc_exist(monkeypatch, doc_loader):

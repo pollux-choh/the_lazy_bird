@@ -63,13 +63,21 @@ D:\ws-python\the_lazy_bird> venv\Scripts\activate
 # 분명 pip도 업그레이드 하라는 메세지가 나왔지만, 우리 작고 하찮은 새는 못봤을꺼야
 (venv) D:\ws-pollux\the_lazy_bird> python.exe -m pip install --upgrade pip
 
+# app 폴더로 이동
+(venv) D:\ws-pollux\the_lazy_bird> cd app
+
 # streamlit으로 main.py 실행하기
-(venv) D:\ws-pollux\the_lazy_bird> streamlit run main\main.py
+(venv) D:\ws-pollux\the_lazy_bird\app> streamlit run main.py
 
   You can now view your Streamlit app in your browser.
 
   Local URL: http://localhost:9999            <-- 이 주소를 웹브라우저에 입력해.
   Network URL: http://192.168.1.xxx:9999      <-- 여기에 너 컴퓨터 IP가 찍혔을꺼야.
+
+
+# 만약, 위 방식으로 실행한 뒤 import error가 발생한다면
+(venv) D:\ws-pollux\the_lazy_bird\app> python -m streamlit run main.py
+
 
 ```
 

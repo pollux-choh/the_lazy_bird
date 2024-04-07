@@ -1,7 +1,7 @@
 import streamlit as st
-from utils.pollux_util import DocLoader
+from utils.resource_loader import DocLoader
 
-docs = DocLoader('release')
+docs = DocLoader('release','doc')
 
 st.title('Release Note')
 st.write(docs.get_doc('release_note.md'))
