@@ -62,12 +62,13 @@ D:\ws-python\the_lazy_bird> venv\Scripts\activate
 
 # 분명 pip도 업그레이드 하라는 메세지가 나왔지만, 우리 작고 하찮은 새는 못봤을꺼야
 (venv) D:\ws-pollux\the_lazy_bird> python.exe -m pip install --upgrade pip
+```
 
-# app 폴더로 이동
+#### 3) 실행하기
+```cmd
+# 메인 프로그램은 app 안에 있어서, app으로 이동
 (venv) D:\ws-pollux\the_lazy_bird> cd app
 
-# 설치하기
-(venv) D:\ws-pollux\the_lazy_bird\app> pip install -e .
 
 # streamlit으로 main.py 실행하기
 (venv) D:\ws-pollux\the_lazy_bird\app> streamlit run main.py
@@ -76,13 +77,23 @@ D:\ws-python\the_lazy_bird> venv\Scripts\activate
 
   Local URL: http://localhost:9999            <-- 이 주소를 웹브라우저에 입력해.
   Network URL: http://192.168.1.xxx:9999      <-- 여기에 너 컴퓨터 IP가 찍혔을꺼야.
-
-
+```
+#### 4) 그 밖에..
+```cmd
 # 만약, 위 방식으로 실행한 뒤 import error가 발생한다면
 (venv) D:\ws-pollux\the_lazy_bird\app> python -m streamlit run main.py
 
+# 만약, vscode를 실행하고 싶다면, 프로젝트 최 상위에서 vscode 실행
+(venv) D:\ws-pollux\the_lazy_bird\app> cd ..
+(venv) D:\ws-pollux\the_lazy_bird> code .
 
 ```
+</ol>
+
+### Case 2 : Docker로 실행 할때 (이정도면 이미 초보 아님.)
+<ol>
+... 작성중 ...
+</ol>
 
 
 

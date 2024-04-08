@@ -1,22 +1,9 @@
-import os
-from pathlib import Path
 import streamlit as st
-import pandas as pd
+from utils.resource_loader import DocLoader
+from utils.app_config import AppConfig
 
-data_df = pd.DataFrame(
-    {
-        "category": [
-            "📊 stremlit 시작하기",
-            "📈 streamlit 60일",
-            "🤖 추천 사이트",
-            "📊 커뮤니티",
-        ],
-    }
-)
+doc = DocLoader('streamlit')
+conf = AppConfig()
 
-# Using "with" notation
-with st.sidebar:
-    data_df
-    
-st.title('Streamlit')
-st.write(data_df.select_dtypes('category'))
+st.title('📱 Streamlit 공부 하기')
+st.write(doc.get_doc('site_list.md'))
