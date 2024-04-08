@@ -3,7 +3,7 @@ from typing import Dict
 from dotenv import dotenv_values
 from pathlib import Path
 
-class EnvFileManager():
+class EnvManager():
     """
     AppConfig is a class for management api keys.
     
@@ -35,7 +35,7 @@ class EnvFileManager():
         """해당하는 env 값만을 제거 (값을 빈 문자열로 설정).
         변경 사항을 .env 파일에 저장합니다."""
         env_dict = cls.get_list(env_file_path)
-        if param_name in env_dict.items():
+        if param_name in env_dict:
             env_dict[param_name] = ""
             cls.__save(cls,env_file_path,env_dict)
         else:
@@ -46,7 +46,7 @@ class EnvFileManager():
         """해당하는 env 변수를 완전히 삭제.
         변경 사항을 .env 파일에 저장합니다."""
         env_dict = cls.get_list(env_file_path)
-        if param_name in env_dict.items():
+        if param_name in env_dict:
             del env_dict[param_name]
             cls.__save(cls, env_file_path, env_dict)
         else:
@@ -65,30 +65,30 @@ if __name__ == "__main__":
     env_full_path = os.path.join(str(base_dir), env_file_name)
 
     # ENV list 확인
-    print(f"ENV LIST = {EnvFileManager.get_list(env_full_path)}")
+    print(f"ENV LIST = {EnvManager.get_list(env_full_path)}")
     
     # 파라미터 추가
-    EnvFileManager.add(env_full_path,'PARAM_4', 'ThisIsForthParam')
-    print(f"ENV LIST = {EnvFileManager.get_list(env_full_path)}")
+    EnvManager.add(env_full_path,'PARAM_4', 'ThisIsForthParam')
+    print(f"ENV LIST = {EnvManager.get_list(env_full_path)}")
 
     # 파라미터 값만 제거
-    EnvFileManager.remove(env_full_path,'PARAM_4')
-    print(f"After remove PARAM_4 = {EnvFileManager.get_list(env_full_path)}")
+    EnvManager.remove(env_full_path,'PARAM_4')
+    print(f"After remove PARAM_4 = {EnvManager.get_list(env_full_path)}")
 
     # 파라미터 완전히 삭제
     try:
-        EnvFileManager.purge(env_full_path,'PARAM_5')  # 'PARAM_5'가 없으므로 예외가 발생합니다.
-        print(f"ENV LIST = {EnvFileManager.get_list(env_full_path)}")
+        EnvManager.purge(env_full_path,'PARAM_5')  # 'PARAM_5'가 없으므로 예외가 발생합니다.
+        print(f"ENV LIST = {EnvManager.get_list(env_full_path)}")
     except KeyError as e:
         print(e)
         
     # 다시 'PARAM_4'를 추가 후 완전 삭제를 시도해 보기
-    EnvFileManager.add(env_full_path,'PARAM_4', 'ThisIsForthParam')
-    EnvFileManager.purge(env_full_path,'PARAM_4')  # 'PARAM_4'를 완전히 삭제합니다.
-    print(f"After purge PARAM_4 = {EnvFileManager.get_list(env_full_path)}")
-    EnvFileManager.add(env_full_path,'A', 'ThisIsForthParamAAAAA')
-    EnvFileManager.add(env_full_path,'B', 'ThisIsForthParamBBBBB')
-    EnvFileManager.add(env_full_path,'C', 'ThisIsForthParamCCCCC')
+    EnvManager.add(env_full_path,'PARAM_4', 'ThisIsForthParam')
+    EnvManager.purge(env_full_path,'PARAM_4')  # 'PARAM_4'를 완전히 삭제합니다.
+    print(f"After purge PARAM_4 = {EnvManager.get_list(env_full_path)}")
+    EnvManager.add(env_full_path,'A', 'ThisIsForthParamAAAAA')
+    EnvManager.add(env_full_path,'B', 'ThisIsForthParamBBBBB')
+    EnvManager.add(env_full_path,'C', 'ThisIsForthParamCCCCC')
     # env.purge('A')  # 'A'를 완전히 삭제합니다.
     # env.purge('B')
     # env.purge('C')

@@ -1,3 +1,4 @@
-streamlit
-pytest
 python-dotenv
+streamlit
+streamlit-option-menu
+pytest
