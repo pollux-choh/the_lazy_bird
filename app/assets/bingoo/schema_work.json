@@ -1,0 +1,506 @@
+{
+  "schema_uid":"1",
+  "schema_name":"operation-v.prod_wm_work_history.wm_work_history",
+  "schema_desctiption":"작업자의 작업 기록",
+  "columns":[
+    {
+      "mode": "NULLABLE",
+      "column_name": "task_result_id",
+      "data_type": "INTEGER",
+      "description": "작업결과ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "task_id",
+      "data_type": "INTEGER",
+      "description": "작업ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "process_type",
+      "data_type": "STRING",
+      "description": "작업자가 하는 작업의 유형",
+      "enum": ["PICKUP", "OUTBOUND", "INBOUND_RETURN", "BOM_ASSEMBLE", "PACKING", "OUTBOUND_RETURN", "BOM_DISASSEMBLE", "STOCK", "INBOUND", "PICKING"],
+      "enum_description": {
+        "PICKUP": "집품", 
+        "OUTBOUND": "출고", 
+        "INBOUND_RETURN": "입고반품", 
+        "BOM_ASSEMBLE": "키트조립", 
+        "PACKING": "포장", 
+        "OUTBOUND_RETURN": "출고반품", 
+        "BOM_DISASSEMBLE": "키트해체", 
+        "STOCK": "재고보관", 
+        "INBOUND": "입고", 
+        "PICKING": "피킹"
+      }
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "activity_type",
+      "data_type": "STRING",
+      "description": "process_type의 세분화하는 작업 유형",
+      "enum": ["INBOUND_RESOLVED","PICKING_DAS","PICKING_PATTENRN","STOCK_CHANGE_STANDBY","OUTBOUND_OPENING","PICKING_DPS","PICKING_EACH","INBOUND_PLAN","BOM_STOCK_CHANGE_ULD"],
+      "enum_description": {
+        "INBOUND_RESOLVED": "입고 완료",
+        "PICKING_DAS": "DAS 피킹",
+        "PICKING_PATTENRN": "피킹 패턴",
+        "STOCK_CHANGE_STANDBY": "재고조정 준비상태",
+        "OUTBOUND_OPENING": "출고 시작",
+        "PICKING_DPS": "DPS 피킹",
+        "PICKING_EACH": "낱개 피킹",
+        "INBOUND_PLAN": "입고 계획",
+        "BOM_STOCK_CHANGE_ULD": "Unit Load Device 변경"
+      }
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "batch_date",
+      "data_type": "DATE",
+      "description": "작업이 할당된 일자, 24:00가 넘어가더라도 이날짜를 기준으로 작업량을 산정하기 위함."
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "work_date",
+      "data_type": "DATE",
+      "description": "작업이 수행된 일자, 24:00가 넘어가면 날짜가 바뀜"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "work_time",
+      "data_type": "TIMESTAMP",
+      "description": "작업이 수행된 시간"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "work_hour",
+      "data_type": "STRING",
+      "description": "작업을 시작하고 완료 할때 까지 걸린 시간"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "delivery_grp_daily_id",
+      "data_type": "INTEGER",
+      "description": "출고 그룹 일자별 ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "delivery_grp_daily_name",
+      "data_type": "STRING",
+      "description": "출고 그룹 일자별 명"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "bp_cd",
+      "data_type": "STRING",
+      "description": "거래처 코드"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "bp_nm",
+      "data_type": "STRING",
+      "description": "거래처 명"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "sl_cd",
+      "data_type": "STRING",
+      "description": "창고 코드"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "sl_nm",
+      "data_type": "STRING",
+      "description": "창고 명[식품온라인,올가 오프라인,올가 온라인,식품 온라인]"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "item_cd",
+      "data_type": "STRING",
+      "description": "품목 코드"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "item_nm",
+      "data_type": "STRING",
+      "description": "품목 명"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "item_unit",
+      "data_type": "STRING",
+      "description": "품목 단위[EA]"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "temperature_type",
+      "data_type": "STRING",
+      "description" : "온도유형[COOL=냉동, NORMAL=상온, COLD=저온]"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "item_bar_code",
+      "data_type": "STRING",
+      "description": "품목 바코드"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "lot_no",
+      "data_type": "STRING",
+      "description": "LOT번호"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "plan_qty",
+      "data_type": "NUMERIC",
+      "description": "계획수량"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "complete_qty",
+      "data_type": "NUMERIC",
+      "description": "완료수량"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "worker",
+      "data_type": "STRING",
+      "description": "작업자"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "division_cd",
+      "data_type": "STRING",
+      "description": "영업부 혹은 영업채널 코드"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "division_nm",
+      "data_type": "STRING",
+      "description": "영업부 혹은 영업채널 명"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "batch_daily_id",
+      "data_type": "INTEGER",
+      "description": "배치 일자별 ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "batch_name",
+      "data_type": "STRING",
+      "description" : "배치 명[[상차혼용 1차, DAS 온라인(770)_COMPULSORY_NORMAL_COOL 1차, DAS 온라인(350)_COLD 1차, DAS 온라인(770)_MIX 1차, DAS 오프라인(지방)_MIX 1차, DAS 온라인(770)_MIX 2차, DAS 온라인(770)_COMPULSORY_NORMAL_COOL 2차, DAS 온라인(350)_COLD 2차, DAS 온라인(770)_MIX 3차, DAS 온라인(770)_MIX 4차, DAS 온라인(350)_COLD 3차, 입고혼용 1차, DAS 온라인(770)_MIX 5차, DAS 오프라인(수도)_MIX 1차, DAS 온라인(350)_COLD 4차, DAS 온라인(770)_MIX 6차]"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "time_reserved_start",
+      "data_type": "TIMESTAMP",
+      "description": "시작 예정 시간"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "time_reserved_end",
+      "data_type": "STRING",
+      "description": "종료 예정 시간"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_location_id",
+      "data_type": "INTEGER",
+      "description": "작업을 출발한 위치 ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_location_address",
+      "data_type": "STRING",
+      "description": "작업을 출발한 위치 명칭"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_uld_id",
+      "data_type": "INTEGER",
+      "description": "원래 품목이 넣어져 있던 ULD(Unit Load Device)의 ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_location_id",
+      "data_type": "INTEGER",
+      "description": "작업을 완료한 위치 ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_location_address",
+      "data_type": "STRING",
+      "description": "작업을 완료한 위치 명칭"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_uld_id",
+      "data_type": "INTEGER",
+      "description": "작업이후 품목이 옮겨 넣어진 ULD(Unit Load Device)의 ID"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "picking_type",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "invoice_no",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "mvnt_no",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "corporation",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "wms_dn_no",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "wms_dn_seq",
+      "data_type": "INTEGER",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "mvnt_date",
+      "data_type": "DATE",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "mvnt_type",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_sl_cd",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_lot_no",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_item_cd",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_item_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_sl_cd",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_lot_no",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_item_cd",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_item_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "mvnt_qty",
+      "data_type": "NUMERIC",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "success_qty",
+      "data_type": "NUMERIC",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "minus_qty",
+      "data_type": "NUMERIC",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "status",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "close_if_yn",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "close_if_date",
+      "data_type": "TIMESTAMP",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "created_user",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "created_date",
+      "data_type": "TIMESTAMP",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "last_modified_user",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "last_modified_date",
+      "data_type": "TIMESTAMP",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "from_sl_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "to_sl_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "mvnt_reason_id",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "mvnt_reason_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "wms_reason_id",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "wms_reason_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "miss_division_cd",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "miss_division_nm",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "remark",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "classification",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "classification2",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "classification3",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "classification4",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "target",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "target2",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "description",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "calculation_formula",
+      "data_type": "STRING",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    },
+    {
+      "mode": "NULLABLE",
+      "column_name": "calculation_details",
+      "data_type": "FLOAT",
+      "description": "#사용안함 #쿼리문에 사용금지"
+    }
+  ]
+}

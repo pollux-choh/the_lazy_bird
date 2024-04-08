@@ -4,10 +4,13 @@ from utils.resource_loader import DocLoader
 from utils.app_config import AppConfig
 
 conf = AppConfig()
-
-st.write(conf.base_dir)
-
 docs = DocLoader('main')
+st.set_page_config(
+    page_title="The Lazy Bird",
+    page_icon="🦜",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 with st.container(border=1):
     tab1, tab2 = st.tabs(["공지사항", "프로젝트 소개"])

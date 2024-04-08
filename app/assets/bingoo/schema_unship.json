@@ -1,0 +1,212 @@
+[
+  {
+    "description": "req_date 필드는 센터 출고일자를 나타낸다. 이 필드는 om_asn_order_miss 테이블의 복합 기본 키의 일부로 사용되는데,  req_date, asn_order_no, asn_order_seq 세 가지 필드로 이루어진 복합 키의 일부이다.",
+    "mode": "REQUIRED",
+    "name": "req_date",
+    "type": "DATE"
+  },
+  {
+    "description": "asn_order_no 필드는 상위 시스템으로 부터 받은 ASN 주문번호를 나타내며 om_asn_order_miss 테이블에서 각 레코드를 고유하게 식별하는 고유 식별자 역할을 한다. 상위 시스템의 예로는 erp 시스템이 될 수 있다.",
+    "mode": "REQUIRED",
+    "name": "asn_order_no",
+    "type": "STRING"
+  },
+  {
+    "description": "asn_order_seq 필드는 ASN 주문의 일련번호를 나타내고, 해당 주문 내에서 레코드의 순서를 식별하는데 사용된다. om_asn_order_miss 테이블에서 각 레코드를 고유하게 식별하는 고유 식별자 역할을 한다.",
+    "mode": "REQUIRED",
+    "name": "asn_order_seq",
+    "type": "STRING"
+  },
+  {
+    "description": "cust_order_no 필드는 외부 상위 시스템으로 부터 받은 고객별 고유 식별 주문 번호를 나타낸다. 외부 시스템 예로는 쇼핑몰이 될 수 있다.",
+    "mode": "NULLABLE",
+    "name": "cust_order_no",
+    "type": "STRING"
+  },
+  {
+    "description": "consignee_id 필드는 수화인 ID를 나타내고, 수화인 고유 식별자 역할을 한다.",
+    "mode": "NULLABLE",
+    "name": "consignee_id",
+    "type": "STRING"
+  },
+  {
+    "description": "corporation 필드는 고객사 법인코드를 나타내며 법인을 고유하게 식별하는 데 사용된다.",
+    "mode": "NULLABLE",
+    "name": "corporation",
+    "type": "STRING"
+  },
+  {
+    "description": "asn_division_cd 필드는 명칭은 사업부 코드를 나타내고, 사업부 고유 식별자 역할을 한다.\nasn_division_cd 필드는 명칭은 사업부 코드를 나타내고, 사업부 고유 식별자 역할을 한다.\nasn_division_cd 필드는 명칭은 사업부 코드를 나타내고, 사업부 고유 식별자 역할을 한다.",
+    "mode": "NULLABLE",
+    "name": "asn_division_cd",
+    "type": "STRING"
+  },
+  {
+    "description": "asn_division_nm 필드는 사업부 명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "asn_division_nm",
+    "type": "STRING"
+  },
+  {
+    "description": "delivery_type 필드는 배송유형을 나타내고, 배송유형 고유 식별자 역할을 한다.",
+    "mode": "NULLABLE",
+    "name": "delv_type",
+    "type": "STRING"
+  },
+  {
+    "description": "delivery_type 필드는 배송유형명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "delv_type_nm",
+    "type": "STRING"
+  },
+  {
+    "description": "bp_cd 필드는 상위 시스템으로 부터 받은 거래처 코드를 나타내고, 거래처 고유 식별자 역할을 한다.",
+    "mode": "NULLABLE",
+    "name": "bp_cd",
+    "type": "STRING"
+  },
+  {
+    "description": "bp_nm 필드는 거래처 명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "bp_nm",
+    "type": "STRING"
+  },
+  {
+    "description": "delv_name 필드는 수화인 명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "delv_name",
+    "type": "STRING"
+  },
+  {
+    "description": "item_cd 필드는 품목 코드를 나타내고, 품목의 고유 식별자 역할을 한다.",
+    "mode": "NULLABLE",
+    "name": "item_cd",
+    "type": "STRING"
+  },
+  {
+    "description": "item_nm 필드는 품목명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "item_nm",
+    "type": "STRING"
+  },
+  {
+    "description": "item_kan_code 필드는 상품 바코드를 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "item_kan_code",
+    "type": "STRING"
+  },
+  {
+    "description": "order_qty 필드는 주문 수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "order_qty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "req_qty 필드는 지시수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "req_qty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "pick_qty 필드는 피킹수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "pick_qty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "pack_qty 필드는 포장 수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "pack_qty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "put_qty 필드는 상차 수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "put_qty",
+    "type": "NUMERIC"
+  },
+  {
+    "description": "miss_qty 필드는 미출 수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "miss_qty",
+    "type": "STRING"
+  },
+  {
+    "description": "send_miss_qty 필드는 최종 미출 전송수량을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "send_miss_qty",
+    "type": "STRING"
+  },
+  {
+    "description": "miss_reason_cd 필드는 미출 사유 코드를 나타내고, 미출사유 고유 식별자 역할을 한다.",
+    "mode": "NULLABLE",
+    "name": "miss_reason_cd",
+    "type": "STRING"
+  },
+  {
+    "description": "miss_resaon_nm 필드는 미출 사유 명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "miss_resaon_nm",
+    "type": "STRING"
+  },
+  {
+    "description": "miss_reason_remark 필드는 미출 사유 상세를 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "miss_reason_remark",
+    "type": "STRING"
+  },
+  {
+    "description": "picking_batch_name 필드는 피킹 배치 명을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "picking_batch_name",
+    "type": "STRING"
+  },
+  {
+    "description": "picking_batch_id 필드는 피킹 배치 아이디를 나타내고, 피킹 배치(작업)에 대한 고유한 식별자로 사용된다.",
+    "mode": "NULLABLE",
+    "name": "picking_batch_id",
+    "type": "STRING"
+  },
+  {
+    "description": "send_yn 필드는 전송 여부를 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "send_yn",
+    "type": "STRING"
+  },
+  {
+    "description": "status 필드는 미출의 상태를 나타낸다. 예로 피킹 미출인 경우 2차 생성 -> 2차 사유등록 -> 2차 전송이 있다.",
+    "mode": "NULLABLE",
+    "name": "status",
+    "type": "STRING"
+  },
+  {
+    "description": "created_user 필드는 테이블에 레코드가 추가될 때 해당 레코드를 생성한 사용자를 나타내는 필드 이다.",
+    "mode": "NULLABLE",
+    "name": "created_user",
+    "type": "STRING"
+  },
+  {
+    "description": "created_date 필드는 레코드가 생성된 날짜와 시간을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "created_date",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "last_modified_user 필드는 레코드를 마지막으로 수정한 사용자를 나타내는 필드이다. 레코드가 수정될 때 해당 사용자의 정보가 이 필드에 기록된다.",
+    "mode": "NULLABLE",
+    "name": "last_modified_user",
+    "type": "STRING"
+  },
+  {
+    "description": "last_modified_date 필드는 레코드가 마지막으로 수정된 날짜와 시간을 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "last_modified_date",
+    "type": "TIMESTAMP"
+  },
+  {
+    "description": "order_status 필드는 주문의 상태를 나타낸다.",
+    "mode": "NULLABLE",
+    "name": "order_status",
+    "type": "STRING"
+  }
+]

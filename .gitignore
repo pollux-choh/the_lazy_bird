@@ -164,3 +164,4 @@ cython_debug/
 secure/
 personal_security/
 secure.txt
+cache/

@@ -2,3 +2,18 @@ python-dotenv
 streamlit
 streamlit-option-menu
 pytest
+
+# Bingoo
+st-copy-to-clipboard
+google-cloud-bigquery
+langchain-openai
+langchain-google-genai
+langchain
+
+# KAKAO GPT
+langchain-community
+faiss-cpu
+langchain-openai
+tiktoken
+chromadb
+lark
