@@ -1,7 +1,7 @@
 import os
 import tempfile
 import pytest
-from app.utils.env_manager import EnvFileManager
+from utils.env_manager import EnvFileManager
 
 """
 EnvFileManager test
@@ -19,6 +19,12 @@ def temp_env_file():
         temp_file.flush()
         yield temp_file.name
     os.unlink(temp_file.name)
+
+@pytest.fixture(autouse=True)
+def reset_singleton():
+    """ 테스트가 실행된 후에, 싱글턴 인스턴스를 리셋합니다."""
+    yield
+    EnvFileManager.reset_instance(EnvFileManager)
 
 def test_get_list(temp_env_file):
     """EnvFileManager 클래스의 get_list 메서드를 테스트합니다."""

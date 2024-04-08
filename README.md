@@ -66,6 +66,9 @@ D:\ws-python\the_lazy_bird> venv\Scripts\activate
 # app 폴더로 이동
 (venv) D:\ws-pollux\the_lazy_bird> cd app
 
+# 설치하기
+(venv) D:\ws-pollux\the_lazy_bird\app> pip install -e .
+
 # streamlit으로 main.py 실행하기
 (venv) D:\ws-pollux\the_lazy_bird\app> streamlit run main.py
 

@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock
 from pathlib import Path
-from app.utils.resource_loader import DocLoader  # doc_loader.py 파일에서 DocLoader 클래스를 임포트
+from utils.resource_loader import DocLoader  # doc_loader.py 파일에서 DocLoader 클래스를 임포트
 
 """
 DocLoader test

@@ -1,10 +1,20 @@
 import streamlit as st
 from utils.resource_loader import DocLoader
+from utils.app_config import AppConfig
 
+conf = AppConfig()
 docs = DocLoader('config')
 
 st.title('⚙️ Config')
 st.write(docs.get_doc('description.md'))
+
+# Project BASE directory 확인
+st.subheader('Application Info')
+project_info = st.container(border=1)
+active_project_info = project_info.toggle('Root Directory')
+if active_project_info:
+    # project_info.text_input(conf.base_dir,disabled=True)
+    project_info.text_input('application root directory',placeholder=conf.base_dir,disabled=True,label_visibility="collapsed")
 
 # OPEN AI 설정을 위한 컨테이너
 st.subheader('Open AI')
@@ -14,7 +24,7 @@ active_open_ai = open_ai.toggle('OpenAI ChatGPT')
 if active_open_ai:
     open_ai.text_input('🔑OPENAI API Key')
     open_ai.link_button("API Key 발급 링크", "https://platform.openai.com/api-keys")
-    if open_ai.text_input:
+    # if open_ai.text_input:
 
 # Google AI Platform 설정을 위한 컨테이너
 st.subheader('Google AI Platform')
@@ -23,7 +33,7 @@ google_ai = st.container(border=1)
 active_google_ai = google_ai.toggle('Google Gemini')
 if active_google_ai:
     tab1, tab2 = google_ai.tabs(["🔑API Key 방식", "📧Authentication File 방식"])
-    
+
     with tab1:
         tab1.text_input('GEMINI API Key')
         tab1.link_button("API Key 발급 링크", "https://aistudio.google.com/app/apikey")
