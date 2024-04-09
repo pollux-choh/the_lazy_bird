@@ -5,3 +5,5 @@
 * [API Key 발급 링크](https://aistudio.google.com/app/apikey)
 
 [![Video Label](http://img.youtube.com/vi/6aj5a7qGcb4/0.jpg)](https://www.youtube.com/watch?v=6aj5a7qGcb4)
+
+* [Gemini Release Note(이것만 보자)](https://cloud.google.com/gemini/docs/release-notes)
