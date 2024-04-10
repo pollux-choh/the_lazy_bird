@@ -12,7 +12,7 @@ import json
 class LLMModel(BaseModel):
     brand: str
     llm_type: str
-    model_name: str
+    llm_name: str
     description: str
     is_active: int
     is_alert: int
@@ -30,9 +30,11 @@ class AppConfig(metaclass=SingletonMeta):
     Git: https://github.com/pollux-choh
     Created: 2024-04-08
     """
-    value: str = None # singleton을 위한 변수
+    _instance: str = None # singleton을 위한 변수
 
     def __init__(self) -> None:
+        self.initialized = True
+        
         # HACK - (2024.04.08, choh) 이부분이 pypi로 빌드했을때, 경로상에 문제가 생길 수 있음.
         #         OS 별로도 검증이 필요함
         # 기본 폴더
@@ -60,6 +62,7 @@ class AppConfig(metaclass=SingletonMeta):
         # llm 모델 정보들을 load
         self.llm_file:Path = self.base_dir / "doc" / "config" / "llm_model.json"
         self.llm_models = self._load_llm_models(self.llm_file)
+
         
     # secure directory가 없으면 생성
     def __init_secure_dir(self, path:Path) -> None:
@@ -114,7 +117,7 @@ class AppConfig(metaclass=SingletonMeta):
             item.is_active = int(item.is_active)
             item.is_alert = int(item.is_alert)
         
-        return pd.DataFrame([item.dict() for item in validated_data])
+        return pd.DataFrame([item.model_dump() for item in validated_data])
 
 
 if __name__ == "__main__":

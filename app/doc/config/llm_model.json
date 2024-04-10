@@ -2,7 +2,7 @@
     {
         "brand": "google",
         "llm_type": "text",
-        "model_name": "gemini-pro",
+        "llm_name": "gemini-pro",
         "description": "텍스트 생성에 타겟팅된 모델",
         "is_active": true,
         "is_alert": false
@@ -10,7 +10,7 @@
     {
         "brand": "google",
         "llm_type": "multi",
-        "model_name": "gemini-pro-vision",
+        "llm_name": "gemini-pro-vision",
         "description": "비전 생성에 타켓팅된 모델",
         "is_active": true,
         "is_alert": false
@@ -18,7 +18,7 @@
     {
         "brand": "openai",
         "llm_type": "text",
-        "model_name": "gpt-3.5-turbo",
+        "llm_name": "gpt-3.5-turbo",
         "description": "텍스트 생성에 타겟팅된 모델",
         "is_active": true,
         "is_alert": false
@@ -26,7 +26,7 @@
     {
         "brand": "openai",
         "llm_type": "multi",
-        "model_name": "gpt-4",
+        "llm_name": "gpt-4",
         "description": "멀티 모덜에 타켓팅된 모델",
         "is_active": true,
         "is_alert": true
