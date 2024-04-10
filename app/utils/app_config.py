@@ -119,6 +119,19 @@ class AppConfig(metaclass=SingletonMeta):
         
         return pd.DataFrame([item.model_dump() for item in validated_data])
 
+    def get_llm_models(self, **kwargs):
+        """
+        다양한 조건으로 LLM 모델을 필터링하여 반환합니다.
+        가능한 필터링 조건: brand, llm_type, is_active 등
+        :return: 필터링된 LLM 모델 DataFrame
+        """
+        query_conditions = ' and '.join([f"{k} == @{k}" for k in kwargs])
+        if query_conditions:
+            filtered_models = self.llm_models.query(query_conditions, local_dict=kwargs)
+            return filtered_models
+        else:
+            return self.llm_models
+
 
 if __name__ == "__main__":
     config = AppConfig()

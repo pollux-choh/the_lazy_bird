@@ -17,7 +17,6 @@ st.set_page_config(
 st.title('⚙️ Config')
 st.write(docs.get_text('description.md'))
 
-conf.llm_models
 
 # key 문자열을 보여주지 않도록 수정
 def __mask_key_string(key:str) -> str:
@@ -39,7 +38,11 @@ with st.expander("Application 정보 자세히 보기"):
     st.text_input('root directory',placeholder=conf.base_dir,disabled=True)
     st.text_input('".env" file path',placeholder=conf.env_file,disabled=True)
 
-
+# LLM Info 패널
+with st.expander("LLM 정보 자세히 보기"):
+    st.write("사용할 수 있는 LLM 모델 정보를 확인할 수 있습니다.")
+    conf.llm_models
+    
 # OPEN AI 설정을 위한 컨테이너
 st.subheader('Open AI')
 
