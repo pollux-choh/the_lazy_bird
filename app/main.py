@@ -16,10 +16,10 @@ with st.container(border=1):
     tab1, tab2 = st.tabs(["공지사항", "프로젝트 소개"])
 
     with tab1:
-        st.write(docs.get_doc('notice.md'))
+        st.write(docs.get_text('notice.md'))
 
     with tab2:
-        st.write(docs.get_doc('project_info.md'))
+        st.write(docs.get_text('project_info.md'))
 
 st.subheader("👏👏빌드 축하 공연🎉🎉")
 with st.container(border=1):

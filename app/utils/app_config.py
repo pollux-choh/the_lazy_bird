@@ -4,7 +4,19 @@ from typing import Dict
 from utils.singleton_meta import SingletonMeta
 from utils.env_manager import EnvManager
 from pathlib import Path
+from pydantic import BaseModel, ValidationError
+import pandas as pd
+import json
 
+# 데이터 모델 정의
+class LLMModel(BaseModel):
+    brand: str
+    llm_type: str
+    model_name: str
+    description: str
+    is_active: int
+    is_alert: int
+    
 class AppConfig(metaclass=SingletonMeta):
     """
     AppConfig is a class for management api keys.
@@ -15,6 +27,7 @@ class AppConfig(metaclass=SingletonMeta):
         content_name (str): The name of the specific content directory under the document root.
         
     Author: choh@pollux.ai
+    Git: https://github.com/pollux-choh
     Created: 2024-04-08
     """
     value: str = None # singleton을 위한 변수
@@ -31,6 +44,7 @@ class AppConfig(metaclass=SingletonMeta):
         # credentials 파일들이 보관될 폴더
         self.secure_dir:Path  = self.base_dir / "secure"
         
+        
         # secure directory가 없으면 생성
         self.__init_secure_dir(self.secure_dir)
         
@@ -40,8 +54,12 @@ class AppConfig(metaclass=SingletonMeta):
         # 환경변수중에 필요한 정보를 Appconfig 생성
         self.__set_env_values()
         
+        # google crendential을 load
         self.__check_and_update_google_credentials()
         
+        # llm 모델 정보들을 load
+        self.llm_file:Path = self.base_dir / "doc" / "config" / "llm_model.json"
+        self.llm_models = self._load_llm_models(self.llm_file)
         
     # secure directory가 없으면 생성
     def __init_secure_dir(self, path:Path) -> None:
@@ -79,8 +97,26 @@ class AppConfig(metaclass=SingletonMeta):
         EnvManager.remove(self.env_file, param_name)
         load_dotenv(self.env_file, override=True)
         self.__set_env_values()
+
+    # JSON 파일을 로드하고 데이터 검사
+    def _load_llm_models(self, json_file):
+        with open(json_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
         
+        try:
+            validated_data = [LLMModel(**item) for item in data]
+        except ValidationError as e:
+            print(f"Invalid data: {e}")
+            return None
         
+        # bool 형식의 열을 정수로 변환
+        for item in validated_data:
+            item.is_active = int(item.is_active)
+            item.is_alert = int(item.is_alert)
+        
+        return pd.DataFrame([item.dict() for item in validated_data])
+
+
 if __name__ == "__main__":
     config = AppConfig()
 

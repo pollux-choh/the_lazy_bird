@@ -19,23 +19,25 @@ import tempfile
 from comp.kakao_gpt.utils import print_messages, StreamHandler
 from pathlib import Path
 from utils.app_config import AppConfig
+from utils.resource_loader import DocLoader
 
 conf = AppConfig()
+doc = DocLoader('example/kakao_gpt')
 
 st.set_page_config(page_title="카톡GPT", page_icon="💬")
 st.title("카톡GPT💬")
-st.markdown(
-    """by [테디노트](https://www.youtube.com/c/teddynote). [소스코드](https://github.com/teddylee777/kakaotalk-gpt) 활용시 반드시 **출처**를 밝혀주세요🙏"""
-)
+
+with st.expander('[테디노트 README 읽기] - 이 코드는 https://github.com/teddylee777/kakaotalk-gpt 에서 참고 하였습니다.',expanded=False):
+    st.markdown(
+        """by [테디노트](https://www.youtube.com/c/teddynote). [소스코드](https://github.com/teddylee777/kakaotalk-gpt) 활용시 반드시 **출처**를 밝혀주세요🙏"""
+    )
+    st.markdown(doc.get_markdown('README.md'), unsafe_allow_html=True)
+
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
 with st.sidebar:
-    # openai_api_key = st.text_input(
-    #     "🔑 OpenAI API 키",
-    #     type="password",
-    # )
     if conf.open_ai_key:
         st.session_state["OPENAI_API_KEY"] = conf.open_ai_key
     st.markdown(

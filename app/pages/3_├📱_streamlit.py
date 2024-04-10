@@ -6,4 +6,4 @@ doc = DocLoader('streamlit')
 conf = AppConfig()
 
 st.title('📱 Streamlit 공부 하기')
-st.write(doc.get_doc('site_list.md'))
+st.write(doc.get_text('site_list.md'))

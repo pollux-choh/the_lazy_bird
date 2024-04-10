@@ -15,7 +15,9 @@ st.set_page_config(
 )
 
 st.title('⚙️ Config')
-st.write(docs.get_doc('description.md'))
+st.write(docs.get_text('description.md'))
+
+conf.llm_models
 
 # key 문자열을 보여주지 않도록 수정
 def __mask_key_string(key:str) -> str:
@@ -43,7 +45,7 @@ st.subheader('Open AI')
 
 # OPEN AI > Application Info 패널
 with st.expander("Open AI API Key 설정하는 방법 보기"):
-    st.write(docs.get_doc('openai.md'))
+    st.write(docs.get_text('openai.md'))
 
 # OPEN AI > 설정 관련 패널
 open_ai = st.container(border=1)
@@ -75,7 +77,7 @@ st.subheader('Google AI Platform')
 
 # Google AI Platform > Application Info 패널
 with st.expander("Google AI platform 설정하는 방법 보기"):
-    st.write(docs.get_doc('google_ai.md'))
+    st.write(docs.get_text('google_ai.md'))
 
 # Google AI Platform > 설정 관련 패널
 google_ai = st.container(border=1)
