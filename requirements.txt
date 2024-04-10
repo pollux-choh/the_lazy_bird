@@ -2,6 +2,7 @@ python-dotenv
 streamlit
 streamlit-option-menu
 pytest
+pytest-mock
 
 # Bingoo
 st-copy-to-clipboard

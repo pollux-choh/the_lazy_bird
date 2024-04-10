@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from kakaotalk_loader import KaKaoTalkLoader
+from comp.kakao_gpt.kakaotalk_loader import KaKaoTalkLoader
 import pandas as pd
 
 def test_process_time_to_24hr_format():
