@@ -3,18 +3,17 @@ streamlit
 streamlit-option-menu
 pytest
 pytest-mock
+langchain-openai
+langchain-google-genai
+langchain
+langchain-community
 
 # Bingoo
 st-copy-to-clipboard
 google-cloud-bigquery
-langchain-openai
-langchain-google-genai
-langchain
 
 # KAKAO GPT
-langchain-community
 faiss-cpu
-langchain-openai
 tiktoken
 chromadb
 lark
