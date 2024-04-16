@@ -16,6 +16,14 @@
         "is_alert": 0
     },
     {
+        "brand": "google",
+        "llm_type": "multi",
+        "llm_name": "gemini-1.5-pro-latest",
+        "description": "비전 생성에 타켓팅된 모델",
+        "is_active": 1,
+        "is_alert": 0
+    },
+    {
         "brand": "openai",
         "llm_type": "text",
         "llm_name": "gpt-3.5-turbo",
@@ -28,7 +36,7 @@
         "llm_type": "multi",
         "llm_name": "gpt-4",
         "description": "멀티 모덜에 타켓팅된 모델",
-        "is_active": 0,
+        "is_active": 1,
         "is_alert": 1
     }
 ]

@@ -52,14 +52,14 @@ def test_get_text_exist(monkeypatch, doc_loader):
     content = doc_loader.get_text("PYTEST.md")
     assert content == '![Test Image](images/test.png "Alternate text")'
     
-def test_get_txt_not_exist(monkeypatch, doc_loader):
+def test_get_txet_not_exist(monkeypatch, doc_loader):
     # Path.read_text 메소드를 mock_read_text로 목킹
     monkeypatch.setattr(Path, "read_text", mock_read_text)
     # 존재하지 않는 파일 접근 시 예외 발생 검사
     with pytest.raises(FileNotFoundError):
         _ = doc_loader.get_text("nonexistent_file.md")
 
-def test_get_txt(monkeypatch, doc_loader):
+def test_get_txet(monkeypatch, doc_loader):
     # Mock the Path.read_text and Path.read_bytes methods
     monkeypatch.setattr(Path, "read_text", mock_read_text)
     
