@@ -78,6 +78,9 @@ class AppConfig(metaclass=SingletonMeta):
         # Google Gemini API Key
         self.google_ai_key = os.getenv("GOOGLE_API_KEY")
         
+        # Huggin Face Key
+        self.huggingface_key = os.getenv("HUGGINGFACEHUB_API_TOKEN")
+        
         # google authentication 관련
         self.google_credentials:Path = self.secure_dir / "google_credentials.json"
         

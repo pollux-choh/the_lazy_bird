@@ -73,6 +73,38 @@ if active_open_ai:
             if col1_2.button("등록", key='btn_regist_open_ai_key', help="입력한 API 키를 등록합니다."):
                 conf.env_key_add('OPENAI_API_KEY', open_ai_key)
                 st.rerun()
+                
+
+# Hugging Face설정을 위한 컨테이너
+st.subheader('Hugging Face')
+
+# OPEN AI > Application Info 패널
+with st.expander("Hugging Face 설정하는 방법 보기"):
+    st.write(docs.get_text('hugging_face.md'))
+
+# OPEN AI > 설정 관련 패널
+hugging_face = st.container(border=1)
+active_hugging_face = hugging_face.toggle('🔑 Hugging Face API Key', value=conf.huggingface_key)
+if active_hugging_face:
+    col3_1, col3_2 = hugging_face.columns([7,1])
+
+    with col3_1:
+        huggingface_key = col3_1.text_input(
+                            "Hugging Face API Key를 입력하세요.", 
+                            '',
+                            label_visibility="collapsed",
+                            placeholder=__mask_key_string(conf.huggingface_key))
+
+    with col3_2:
+        if conf.huggingface_key:
+            if col3_2.button("삭제", key='btn_delete_hugging_face',help="현재 등록된 API 키를 삭제합니다."):
+                conf.env_key_remove('HUGGINGFACEHUB_API_TOKEN')
+                st.rerun()
+
+        else:
+            if col3_2.button("등록", key='btn_regist_hugging_face', help="입력한 API 키를 등록합니다."):
+                conf.env_key_add('HUGGINGFACEHUB_API_TOKEN', huggingface_key)
+                st.rerun()
 
 
 # Google AI Platform 설정을 위한 컨테이너
