@@ -17,3 +17,6 @@ faiss-cpu
 tiktoken
 chromadb
 lark
+
+# Embedding
+qdrant-client

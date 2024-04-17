@@ -9,8 +9,10 @@ from qdrant_client.models import Distance, PointStruct, VectorParams
 from langchain_community.vectorstores.qdrant import Qdrant
 from langchain_text_splitters import CharacterTextSplitter,RecursiveCharacterTextSplitter
 from langchain_community.document_loaders.text import TextLoader
-
+from utils.resource_loader import DocLoader
 conf = AppConfig()
+doc = DocLoader(content_name='embedding')
+
 
 # client = OpenAI(
 #     api_key=conf.open_ai_key
@@ -25,8 +27,8 @@ conf = AppConfig()
 # )
 # response
 
-
-
+st.write('sudo docker run -p 6333:6333 qdrant/qdrant')
+st.link_button("Go to Qdrant DB Web UI", "http://localhost:6333/dashboard")
 collection_name = "example_collection"
 
 # client = QdrantClient(url="http://localhost:6333")
@@ -46,9 +48,9 @@ collection_name = "example_collection"
 # st.write(conf.google_credentials)
 credentials = service_account.Credentials.from_service_account_file(conf.google_credentials)
 
-doc_embeddings = GoogleGenerativeAIEmbeddings(
+embeddings = GoogleGenerativeAIEmbeddings(
     credentials=credentials,
-    model="models/embedding-001",
+    model="models/text-embedding-004",
     task_type="retrieval_document",
     )
 
@@ -62,17 +64,20 @@ doc_embeddings = GoogleGenerativeAIEmbeddings(
 # ]
 
 # text_path = r"D:\ws-pollux\the_lazy_bird\app\doc\embedding\state_of_the_union.txt"
-text_path = r"D:\ws-pollux\the_lazy_bird\app\doc\embedding\nuti_tree.txt"
+# doc.get_text('nuti_tree.txt')
+# text_path = r"D:\ws-pollux\the_lazy_bird\app\doc\embedding\nuti_tree.txt"
+# text_path = doc.get_text('nuti_tree.txt')
+text_path = doc.content_dir / 'nuti_tree.txt'
 with st.expander("original text"):
-    st.markdown(text_path)
+    st.markdown(doc.get_text('nuti_tree.txt'))
     
 loader = TextLoader(text_path,encoding='UTF-8')
 documents = loader.load()
 
 # text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=10)
 text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size = 100,
-    chunk_overlap  = 0,
+    chunk_size = 500,
+    chunk_overlap  = 50,
     length_function = len,
 )
 docs = text_splitter.split_documents(documents)
@@ -80,28 +85,45 @@ docs = text_splitter.split_documents(documents)
 with st.expander("document"):
     st.write(docs)
 
-qdrant = Qdrant.from_documents(
-    docs,
-    doc_embeddings,
-    location=":memory:",  # Local mode with in-memory storage only
-    collection_name="my_documents",
-)
-
-# url = "http://localhost:6333"
 # qdrant = Qdrant.from_documents(
 #     docs,
-#     doc_embeddings,
-#     url=url,
-#     prefer_grpc=True,
+#     embeddings,
+#     location=":memory:",  # Local mode with in-memory storage only
 #     collection_name="my_documents",
 # )
 
-text_input_placeholder = "What did the president say about Ketanji Brown Jackson"
+# url = "http://localhost:6333"
+# client = QdrantClient(url, port=6333, grpc_port=6333)
+
+# qdrant = Qdrant(
+#     embeddings=doc_embeddings,
+#     client=client,
+#     # prefer_grpc=True,
+#     collection_name="my_documents",
+# )
+
+url = "http://localhost"
+qdrant = Qdrant.from_documents(
+    docs, 
+    embeddings,
+    url=url,
+    prefer_grpc=True,
+    collection_name="my_documents",
+    # force_recreate=True,
+)
+
+# documents=docs,
+
+text_input_placeholder = "그도 단번에 기운을 회복하며 대답하였다."
 query = st.text_input(label="Query",placeholder=text_input_placeholder)
 # st.title("[QUERY]")
 # st.write(query)
 if st.button("Query"):
-    found_docs = qdrant.similarity_search(query)
+    found_docs = qdrant.similarity_search_with_score(query)
 
     st.title("[ANSWER]")
-    st.write(found_docs[0].page_content)
+    document, score = found_docs[0]
+    st.write(document.page_content)
+    st.write(f"\nScore: {score}")
+    # st.write(found_docs[0].page_content)
+    # st.write(found_docs[0].metadata)

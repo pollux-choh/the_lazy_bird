@@ -124,7 +124,6 @@ class DocLoader:
             str: The modified markdown text with HTML <img> tags replacing markdown image syntax.
         """
         images = self._get_images(markdown)
-        print(f"_convert_txt_to_markdown.images = {images}")
         for image in images:
             image_markdown = image[0]
             image_alt = image[1]
@@ -132,7 +131,6 @@ class DocLoader:
             if image_path.exists():
                 markdown = markdown.replace(image_markdown, self._convert_img_to_html(image_path, image_alt))
         
-        print(f"_convert_txt_to_markdown.markdown = {markdown}")
         return markdown
 
 
