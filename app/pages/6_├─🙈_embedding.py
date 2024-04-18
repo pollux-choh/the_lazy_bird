@@ -85,12 +85,12 @@ docs = text_splitter.split_documents(documents)
 with st.expander("document"):
     st.write(docs)
 
-# qdrant = Qdrant.from_documents(
-#     docs,
-#     embeddings,
-#     location=":memory:",  # Local mode with in-memory storage only
-#     collection_name="my_documents",
-# )
+qdrant = Qdrant.from_documents(
+    docs,
+    embeddings,
+    location=":memory:",  # Local mode with in-memory storage only
+    collection_name="my_documents",
+)
 
 # url = "http://localhost:6333"
 # client = QdrantClient(url, port=6333, grpc_port=6333)
@@ -101,7 +101,7 @@ with st.expander("document"):
 #     # prefer_grpc=True,
 #     collection_name="my_documents",
 # )
-
+'''
 url = "http://localhost"
 qdrant = Qdrant.from_documents(
     docs, 
@@ -111,7 +111,7 @@ qdrant = Qdrant.from_documents(
     collection_name="my_documents",
     # force_recreate=True,
 )
-
+'''
 # documents=docs,
 
 text_input_placeholder = "그도 단번에 기운을 회복하며 대답하였다."
