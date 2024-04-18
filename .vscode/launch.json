@@ -9,8 +9,9 @@
             "type": "python",
             "request": "launch",
             "module": "streamlit",
-            "args": ["run", "${file}"],
-            "justMyCode": true,
+            "args": ["run", "${workspaceFolder}/app/main.py"],
+            "cwd": "${workspaceFolder}/app",
+            "justMyCode": true
         }
     ]
 }
