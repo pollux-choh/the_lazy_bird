@@ -176,15 +176,74 @@ client.recreate_collection(
 import uuid
 from qdrant_client.http.models import PointStruct
 
+# 기사 임베딩 하기
 points = []
 for idx,chunk in enumerate(chunks):
-    response = openai_embeddings.embed_query(chunk)
-    embeddings = response['data'][0]['embedding']
+    embeddings = openai_embeddings.embed_query(chunk.page_content)
+    # embeddings = response['data'][0]['embedding']
     point_id = str(uuid.uuid4())  # Generate a unique ID for the point
-    points.append(PointStruct(id=point_id,payload={"text": chunk},vector=embeddings))
 
+    print(f"POINT_ID = {point_id}")
+    print(f"PAYLOAD = {chunk.page_content}")
+    print(f"vetor length = {len(embeddings)}")
+    points.append(PointStruct(id=point_id,payload={"text": chunk.page_content},vector=embeddings))
+
+# 기사 백터에 넣기
 client.upsert(
     collection_name="my-collection",
     wait=True,
     points=points
 )
+
+# 쿼리하기
+query = "현대글로비스 물류 드림 캠프에 대해서 설명 해줘."
+embeddings = openai_embeddings.embed_query(query)
+# response = openai.Embedding.create(
+#     input=query,
+#     model="text-embedding-ada-002"
+# )
+# embeddings = response['data'][0]['embedding']
+search_result = client.search(
+    collection_name="my-collection",
+    query_vector=embeddings,
+    limit=3
+)
+prompt=""
+for result in search_result:
+    prompt += result.payload['text']
+concatenated_string = " ".join([prompt,query])
+# completion = openai.ChatCompletion.create(
+#     model="gpt-3.5-turbo",
+#     messages=[
+#         {"role": "user", "content": concatenated_string}
+#     ]
+# )
+# completion.choices[0].message.content
+
+from langchain_openai import ChatOpenAI
+from utils.app_config import AppConfig
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+llm = ChatOpenAI(
+    openai_api_key=conf.open_ai_key,
+    model="gpt-4-turbo",
+    temperature=0)
+
+# prompt = ChatPromptTemplate.from_template(concatenated_string)
+
+# chain = (
+#     prompt
+#     | llm
+#     | StrOutputParser()
+# )
+
+# result = chain.invoke()
+
+result = llm.invoke(concatenated_string)
+print(f"\n\n\n질문 = {query}")
+print(f"\n답변 = {result}")
+st.write(f"\n\n\n질문 = {query}")
+st.write(f"\n답변 = {result}")
